@@ -1,6 +1,6 @@
 import Testing
 import Foundation
-@testable import XcodeToolsBar
+@testable import CodexAgentBar
 
 @Suite("StatsCache Parsing Tests")
 struct StatsCacheTests {

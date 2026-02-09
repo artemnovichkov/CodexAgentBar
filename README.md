@@ -1,4 +1,4 @@
-# XcodeToolsBar
+# CodexAgentBar
 
 A macOS menu bar app for tracking Claude Agent stats from Xcode.
 

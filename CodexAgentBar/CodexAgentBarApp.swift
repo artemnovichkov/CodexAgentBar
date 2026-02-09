@@ -1,9 +1,9 @@
 import SwiftUI
 
 @main
-struct XcodeToolsBarApp: App {
+struct CodexAgentBarApp: App {
     var body: some Scene {
-        MenuBarExtra("XcodeToolsBar", systemImage: "hammer.fill") {
+        MenuBarExtra("CodexAgentBar", systemImage: "hammer.fill") {
             StatsView()
         }
         .menuBarExtraStyle(.window)

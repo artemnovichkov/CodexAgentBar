@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA000001 /* XcodeToolsBarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001 /* XcodeToolsBarApp.swift */; };
+		AA000001 /* CodexAgentBarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001 /* CodexAgentBarApp.swift */; };
 		AA000002 /* StatsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002 /* StatsCache.swift */; };
 		AA000003 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100003 /* StatsViewModel.swift */; };
 		AA000004 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100004 /* StatsView.swift */; };
@@ -18,7 +18,7 @@
 
 /* Begin PBXFileReference section */
 		06A16EFE2F3729F90008930B /* StatsCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCacheTests.swift; sourceTree = "<group>"; };
-		AA100001 /* XcodeToolsBarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeToolsBarApp.swift; sourceTree = "<group>"; };
+		AA100001 /* CodexAgentBarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexAgentBarApp.swift; sourceTree = "<group>"; };
 		AA100002 /* StatsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCache.swift; sourceTree = "<group>"; };
 		AA100003 /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
 		AA100004 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
@@ -26,7 +26,7 @@
 		AA100006 /* HourlyDistributionChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyDistributionChart.swift; sourceTree = "<group>"; };
 		AA100007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA100008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA100009 /* XcodeToolsBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcodeToolsBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA100009 /* CodexAgentBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodexAgentBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,34 +40,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		06A16EFD2F3729DE0008930B /* XcodeToolsBarTests */ = {
+		06A16EFD2F3729DE0008930B /* CodexAgentBarTests */ = {
 			isa = PBXGroup;
 			children = (
 				06A16EFE2F3729F90008930B /* StatsCacheTests.swift */,
 			);
-			path = XcodeToolsBarTests;
+			path = CodexAgentBarTests;
 			sourceTree = "<group>";
 		};
 		AA300001 = {
 			isa = PBXGroup;
 			children = (
-				AA300002 /* XcodeToolsBar */,
+				AA300002 /* CodexAgentBar */,
 				AA300006 /* Products */,
-				06A16EFD2F3729DE0008930B /* XcodeToolsBarTests */,
+				06A16EFD2F3729DE0008930B /* CodexAgentBarTests */,
 			);
 			sourceTree = "<group>";
 		};
-		AA300002 /* XcodeToolsBar */ = {
+		AA300002 /* CodexAgentBar */ = {
 			isa = PBXGroup;
 			children = (
-				AA100001 /* XcodeToolsBarApp.swift */,
+				AA100001 /* CodexAgentBarApp.swift */,
 				AA300003 /* Models */,
 				AA300004 /* ViewModels */,
 				AA300005 /* Views */,
 				AA100007 /* Assets.xcassets */,
 				AA100008 /* Info.plist */,
 			);
-			path = XcodeToolsBar;
+			path = CodexAgentBar;
 			sourceTree = "<group>";
 		};
 		AA300003 /* Models */ = {
@@ -99,7 +99,7 @@
 		AA300006 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA100009 /* XcodeToolsBar.app */,
+				AA100009 /* CodexAgentBar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,9 +107,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA400001 /* XcodeToolsBar */ = {
+		AA400001 /* CodexAgentBar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA600002 /* Build configuration list for PBXNativeTarget "XcodeToolsBar" */;
+			buildConfigurationList = AA600002 /* Build configuration list for PBXNativeTarget "CodexAgentBar" */;
 			buildPhases = (
 				AA500001 /* Sources */,
 				AA200001 /* Frameworks */,
@@ -119,9 +119,9 @@
 			);
 			dependencies = (
 			);
-			name = XcodeToolsBar;
-			productName = XcodeToolsBar;
-			productReference = AA100009 /* XcodeToolsBar.app */;
+			name = CodexAgentBar;
+			productName = CodexAgentBar;
+			productReference = AA100009 /* CodexAgentBar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -139,7 +139,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AA600001 /* Build configuration list for PBXProject "XcodeToolsBar" */;
+			buildConfigurationList = AA600001 /* Build configuration list for PBXProject "CodexAgentBar" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -152,7 +152,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA400001 /* XcodeToolsBar */,
+				AA400001 /* CodexAgentBar */,
 			);
 		};
 /* End PBXProject section */
@@ -173,7 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA000001 /* XcodeToolsBarApp.swift in Sources */,
+				AA000001 /* CodexAgentBarApp.swift in Sources */,
 				AA000002 /* StatsCache.swift in Sources */,
 				AA000003 /* StatsViewModel.swift in Sources */,
 				AA000004 /* StatsView.swift in Sources */,
@@ -311,7 +311,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = XcodeToolsBar/Info.plist;
+				INFOPLIST_FILE = CodexAgentBar/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -319,7 +319,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.artemnovichkov.XcodeToolsBar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.artemnovichkov.CodexAgentBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -336,7 +336,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = XcodeToolsBar/Info.plist;
+				INFOPLIST_FILE = CodexAgentBar/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -344,7 +344,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.artemnovichkov.XcodeToolsBar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.artemnovichkov.CodexAgentBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -354,7 +354,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA600001 /* Build configuration list for PBXProject "XcodeToolsBar" */ = {
+		AA600001 /* Build configuration list for PBXProject "CodexAgentBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA700001 /* Debug */,
@@ -363,7 +363,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA600002 /* Build configuration list for PBXNativeTarget "XcodeToolsBar" */ = {
+		AA600002 /* Build configuration list for PBXNativeTarget "CodexAgentBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA700003 /* Debug */,
