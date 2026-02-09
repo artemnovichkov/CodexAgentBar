@@ -79,12 +79,14 @@ struct StatsView: View {
         VStack(alignment: .leading, spacing: 8) {
             sectionHeader("Daily Activity")
             let activities = viewModel.recentDailyActivity
-            if activities.isEmpty {
-                Text("No data")
+            if activities.contains(where: { $0.messageCount > 0 || $0.sessionCount > 0 || $0.toolCallCount > 0 }) {
+                DailyActivityChart(activities: activities)
+            } else {
+                Text("No activity this week")
                     .font(.subheadline)
                     .foregroundStyle(.tertiary)
-            } else {
-                DailyActivityChart(activities: activities)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .frame(height: 70)
             }
         }
     }
@@ -112,7 +114,7 @@ struct StatsView: View {
                 .padding(.horizontal, 10)
 
             VStack(alignment: .leading, spacing: 6) {
-                sectionHeader("Best Session")
+                sectionHeader("Longest Session")
                 VStack(spacing: 3) {
                     if let duration = viewModel.formattedLongestSessionDuration {
                         row("Duration", value: duration)

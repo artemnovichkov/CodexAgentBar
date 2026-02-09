@@ -46,20 +46,26 @@ struct HourlyDistributionChart: View {
         .frame(height: 80)
     }
 
+    private static let shortFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: f.locale)
+        return f
+    }()
+
+    private static let fullFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = DateFormatter.dateFormat(fromTemplate: "j:mm", options: 0, locale: f.locale)
+        return f
+    }()
+
     private func formatHour(_ hour: Int) -> String {
-        switch hour {
-        case 0: "12a"
-        case 6: "6a"
-        case 12: "12p"
-        case 18: "6p"
-        default: "\(hour)"
-        }
+        let date = Calendar.current.date(from: DateComponents(hour: hour))!
+        return Self.shortFormatter.string(from: date)
     }
-    
+
     private func formatHourFull(_ hour: Int) -> String {
-        let period = hour < 12 ? "AM" : "PM"
-        let displayHour = hour == 0 ? 12 : (hour > 12 ? hour - 12 : hour)
-        return "\(displayHour):00 \(period)"
+        let date = Calendar.current.date(from: DateComponents(hour: hour))!
+        return Self.fullFormatter.string(from: date)
     }
 }
 

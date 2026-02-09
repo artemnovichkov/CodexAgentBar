@@ -70,8 +70,18 @@ final class StatsViewModel {
     }
 
     var recentDailyActivity: [DailyActivity] {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        guard let weekStart = calendar.dateInterval(of: .weekOfYear, for: today)?.start else { return [] }
         let activities = stats?.dailyActivity ?? []
-        return Array(activities.suffix(14))
+
+        return (0..<7).map { offset in
+            let day = calendar.date(byAdding: .day, value: offset, to: weekStart)!
+            if let match = activities.first(where: { calendar.isDate($0.date, inSameDayAs: day) }) {
+                return match
+            }
+            return DailyActivity(date: day, messageCount: 0, sessionCount: 0, toolCallCount: 0)
+        }
     }
 
     var sortedHourCounts: [(hour: Int, count: Int)] {

@@ -73,8 +73,8 @@ struct DailyActivityChart: View {
                 }
             }
             .chartXAxis {
-                AxisMarks(values: .automatic) { value in
-                    AxisValueLabel(format: .dateTime.month().day())
+                AxisMarks(values: .stride(by: .day, count: 1)) { _ in
+                    AxisValueLabel(format: .dateTime.weekday(.abbreviated))
                 }
             }
             .chartXScale(range: .plotDimension(padding: 12))
