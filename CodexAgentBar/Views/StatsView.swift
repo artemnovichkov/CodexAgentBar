@@ -3,11 +3,7 @@ import Charts
 import StatsClient
 
 struct StatsView: View {
-    @State private var viewModel: StatsViewModel
-
-    init(viewModel: StatsViewModel = StatsViewModel()) {
-        _viewModel = State(initialValue: viewModel)
-    }
+    @State var viewModel: StatsViewModel
 
     var body: some View {
         Group {
@@ -59,15 +55,6 @@ struct StatsView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
-            Spacer()
-            Button {
-                viewModel.loadStats()
-            } label: {
-                Image(systemName: "arrow.clockwise")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-            .buttonStyle(.plain)
         }
     }
 
@@ -76,9 +63,8 @@ struct StatsView: View {
     private func dailyChartSection() -> some View {
         VStack(alignment: .leading, spacing: 8) {
             sectionHeader("Daily Activity")
-            let activities = viewModel.recentDailyActivity
-            if activities.contains(where: { $0.messageCount > 0 || $0.sessionCount > 0 || $0.toolCallCount > 0 }) {
-                DailyActivityChart(activities: activities)
+            if viewModel.hasRecentActivity {
+                DailyActivityChart(activities: viewModel.recentDailyActivity)
             } else {
                 Text("No activity this week")
                     .font(.subheadline)
@@ -138,7 +124,7 @@ struct StatsView: View {
                             Text(viewModel.shortModelName(name))
                                 .font(.subheadline)
                             Spacer()
-                            Text(viewModel.formatTokenCount(totalTokens))
+                            Text(totalTokens, format: .number.notation(.compactName))
                                 .font(.subheadline.monospacedDigit())
                                 .foregroundStyle(.secondary)
                         }

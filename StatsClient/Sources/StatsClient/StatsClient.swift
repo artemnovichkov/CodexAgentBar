@@ -45,8 +45,8 @@ extension StatsClient {
     }
 }
 
-extension StatsCache {
-    public static var mock: StatsCache {
+private extension StatsCache {
+    static var mock: StatsCache {
         let calendar = Calendar.current
         let today = Date()
 
@@ -80,7 +80,7 @@ extension StatsCache {
             dailyActivity: Array(dailyActivity),
             dailyModelTokens: dailyModelTokens,
             modelUsage: [
-                "claude-sonnet-4-20250514": ModelUsage(
+                "claude-opus-4-5-20251101": ModelUsage(
                     inputTokens: 150000,
                     outputTokens: 45000,
                     cacheReadInputTokens: 80000,
@@ -89,16 +89,6 @@ extension StatsCache {
                     costUSD: 2.45,
                     contextWindow: 200000,
                     maxOutputTokens: 16000
-                ),
-                "claude-haiku-4-20250514": ModelUsage(
-                    inputTokens: 50000,
-                    outputTokens: 15000,
-                    cacheReadInputTokens: 25000,
-                    cacheCreationInputTokens: 5000,
-                    webSearchRequests: 2,
-                    costUSD: 0.35,
-                    contextWindow: 200000,
-                    maxOutputTokens: 8000
                 )
             ],
             totalSessions: 42,

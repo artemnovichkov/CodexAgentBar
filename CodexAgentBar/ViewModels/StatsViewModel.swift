@@ -52,6 +52,10 @@ final class StatsViewModel {
         }
     }
 
+    var hasRecentActivity: Bool {
+        recentDailyActivity.contains { $0.messageCount > 0 || $0.sessionCount > 0 || $0.toolCallCount > 0 }
+    }
+
     var sortedHourCounts: [(hour: Int, count: Int)] {
         guard let hourCounts = stats?.hourCounts else { return [] }
         return hourCounts
@@ -67,10 +71,8 @@ final class StatsViewModel {
     func loadStats() {
         do {
             stats = try statsClient.loadStats()
-            error = nil
         } catch {
             self.error = "Unable to read stats"
-            stats = nil
         }
     }
 
@@ -90,14 +92,5 @@ final class StatsViewModel {
         let family = parts[1].capitalized
         let version = "\(parts[2]).\(parts[3])"
         return "\(family) \(version)"
-    }
-
-    func formatTokenCount(_ count: Int) -> String {
-        if count >= 1_000_000 {
-            return String(format: "%.1fM", Double(count) / 1_000_000)
-        } else if count >= 1_000 {
-            return String(format: "%.1fK", Double(count) / 1_000)
-        }
-        return "\(count)"
     }
 }
