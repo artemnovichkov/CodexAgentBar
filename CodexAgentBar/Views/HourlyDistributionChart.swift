@@ -19,7 +19,7 @@ struct HourlyDistributionChart: View {
                     .foregroundStyle(.gray.opacity(0.3))
                     .annotation(position: .top, spacing: 0, overflowResolution: .init(x: .fit, y: .fit)) {
                         VStack(spacing: 2) {
-                            Text(formatHourFull(entry.hour))
+                            Text(dateForHour(entry.hour), format: .dateTime.hour().minute())
                                 .font(.caption2)
                                 .foregroundStyle(.secondary)
                             Text("\(entry.count)")
@@ -36,7 +36,7 @@ struct HourlyDistributionChart: View {
                 AxisGridLine()
                 AxisValueLabel {
                     if let hour = value.as(Int.self) {
-                        Text(formatHour(hour))
+                        Text(dateForHour(hour), format: .dateTime.hour().minute())
                     }
                 }
             }
@@ -46,26 +46,8 @@ struct HourlyDistributionChart: View {
         .frame(height: 80)
     }
 
-    private static let shortFormatter: DateFormatter = {
-        let f = DateFormatter()
-        f.dateFormat = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: f.locale)
-        return f
-    }()
-
-    private static let fullFormatter: DateFormatter = {
-        let f = DateFormatter()
-        f.dateFormat = DateFormatter.dateFormat(fromTemplate: "j:mm", options: 0, locale: f.locale)
-        return f
-    }()
-
-    private func formatHour(_ hour: Int) -> String {
-        let date = Calendar.current.date(from: DateComponents(hour: hour))!
-        return Self.shortFormatter.string(from: date)
-    }
-
-    private func formatHourFull(_ hour: Int) -> String {
-        let date = Calendar.current.date(from: DateComponents(hour: hour))!
-        return Self.fullFormatter.string(from: date)
+    private func dateForHour(_ hour: Int) -> Date {
+        Calendar.current.date(from: DateComponents(hour: hour))!
     }
 }
 

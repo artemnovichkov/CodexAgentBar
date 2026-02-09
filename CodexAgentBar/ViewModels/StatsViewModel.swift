@@ -38,38 +38,11 @@ final class StatsViewModel {
         return Calendar.current.dateComponents([.day], from: firstDate, to: Date()).day
     }
 
-    var formattedLongestSessionDuration: String? {
-        guard let duration = stats?.longestSession.duration else { return nil }
-        let totalSeconds = duration / 1000
-        let hours = totalSeconds / 3600
-        let minutes = (totalSeconds % 3600) / 60
-        let seconds = totalSeconds % 60
-        if hours > 0 {
-            return "\(hours)h \(minutes)m"
-        } else if minutes > 0 {
-            return "\(minutes)m \(seconds)s"
-        } else {
-            return "\(seconds)s"
-        }
-    }
-
-    var longestSessionDate: String? {
-        guard let date = stats?.longestSession.timestamp else { return nil }
-        let display = DateFormatter()
-        display.dateStyle = .medium
-        display.timeStyle = .none
-        return display.string(from: date)
-    }
-
-    var peakHour: String? {
+    var peakHourDate: Date? {
         guard let hourCounts = stats?.hourCounts,
               let maxEntry = hourCounts.max(by: { $0.value < $1.value }),
               let hour = Int(maxEntry.key) else { return nil }
-        let formatter = DateFormatter()
-        formatter.dateFormat = "ha"
-        let calendar = Calendar.current
-        let date = calendar.date(from: DateComponents(hour: hour))!
-        return formatter.string(from: date).lowercased()
+        return Calendar.current.date(from: DateComponents(hour: hour))
     }
 
     var sortedModelNames: [String] {

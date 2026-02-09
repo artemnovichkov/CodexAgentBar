@@ -102,8 +102,8 @@ struct StatsView: View {
                     if let days = viewModel.daysSinceFirstSession {
                         row("Days", value: "\(days)")
                     }
-                    if let peakHour = viewModel.peakHour {
-                        row("Peak", value: peakHour)
+                    if let peakHour = viewModel.peakHourDate {
+                        row("Peak", value: Text(peakHour, format: .dateTime.hour().minute()))
                     }
                 }
             }
@@ -115,13 +115,9 @@ struct StatsView: View {
             VStack(alignment: .leading, spacing: 6) {
                 sectionHeader("Longest Session")
                 VStack(spacing: 3) {
-                    if let duration = viewModel.formattedLongestSessionDuration {
-                        row("Duration", value: duration)
-                    }
+                    row("Duration", value: Text(Duration.milliseconds(stats.longestSession.duration), format: .units(allowed: [.hours, .minutes, .seconds], width: .narrow, maximumUnitCount: 2)))
                     row("Messages", value: "\(stats.longestSession.messageCount)")
-                    if let date = viewModel.longestSessionDate {
-                        row("Date", value: date)
-                    }
+                    row("Date", value: Text(stats.longestSession.timestamp, format: .dateTime.day().month().year()))
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -192,11 +188,15 @@ struct StatsView: View {
     }
 
     private func row(_ label: String, value: String) -> some View {
+        row(label, value: Text(value))
+    }
+
+    private func row(_ label: String, value: Text) -> some View {
         HStack {
             Text(label)
                 .foregroundStyle(.secondary)
             Spacer()
-            Text(value)
+            value
                 .fontWeight(.medium)
         }
         .font(.subheadline)
