@@ -1,26 +1,5 @@
 import Foundation
-
-public struct StatsClient: Sendable {
-    public enum Error: Swift.Error {
-        case fileNotFound
-    }
-
-    public static var statsPath: String {
-        let home = FileManager.default.homeDirectoryForCurrentUser.path
-        return "\(home)/Library/Developer/Xcode/CodingAssistant/ClaudeAgentConfig/stats-cache.json"
-    }
-
-    public var loadStats: @Sendable () throws -> StatsCache?
-    public var startMonitoring: @Sendable (@escaping @Sendable () -> Void) -> Void
-
-    public init(
-        loadStats: @escaping @Sendable () throws -> StatsCache?,
-        startMonitoring: @escaping @Sendable (@escaping @Sendable () -> Void) -> Void
-    ) {
-        self.loadStats = loadStats
-        self.startMonitoring = startMonitoring
-    }
-}
+import StatsClient
 
 extension StatsClient {
     public static var live: StatsClient {
@@ -30,7 +9,7 @@ extension StatsClient {
                     throw Error.fileNotFound
                 }
                 let data = try Data(contentsOf: URL(fileURLWithPath: statsPath))
-                return try StatsCache.decode(from: data)
+                return try JSONDecoder.statsDecoder.decode(StatsCache.self, from: data)
             },
             startMonitoring: { eventHandler in
                 let path = Self.statsPath
@@ -54,15 +33,6 @@ extension StatsClient {
 
                 source.resume()
             }
-        )
-    }
-}
-
-extension StatsClient {
-    public static var empty: StatsClient {
-        StatsClient(
-            loadStats: { throw Error.fileNotFound },
-            startMonitoring: { _ in }
         )
     }
 }

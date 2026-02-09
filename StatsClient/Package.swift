@@ -7,11 +7,15 @@ let package = Package(
     platforms: [.macOS(.v14)],
     products: [
         .library(
-            name: "StatsClient",
-            targets: ["StatsClient"]
-        ),
+              name: "StatsClient",
+              targets: ["StatsClient"]),
+            .library(
+              name: "StatsClientLive",
+              targets: ["StatsClientLive"]),
     ],
     targets: [
         .target(name: "StatsClient"),
+        .target(name: "StatsClientLive", dependencies: ["StatsClient"]),
+        .testTarget(name: "StatsClientTests", dependencies: ["StatsClient"]),
     ]
 )

@@ -1,34 +1,22 @@
 import Foundation
 import Observation
+import StatsClient
+import StatsClientLive
 
 @Observable
 final class StatsViewModel {
-
     private(set) var stats: StatsCache?
     private(set) var error: String?
 
     private var fileMonitor: DispatchSourceFileSystemObject?
     private var fileDescriptor: Int32 = -1
 
-    private static let statsPath: String = {
-        let home = FileManager.default.homeDirectoryForCurrentUser.path
-        return "\(home)/Library/Developer/Xcode/CodingAssistant/ClaudeAgentConfig/stats-cache.json"
-    }()
+    private var statsClient: StatsClient
 
-    init(loadOnInit: Bool = true) {
-        if loadOnInit {
-            loadStats()
-            startMonitoring()
-        }
-    }
-
-    func setError(_ message: String) {
-        error = message
-        stats = nil
-    }
-
-    deinit {
-        stopMonitoring()
+    init(statsClient: StatsClient = .live) {
+        self.statsClient = statsClient
+        loadStats()
+        startMonitoring()
     }
 
     // MARK: - Computed Properties
@@ -77,16 +65,8 @@ final class StatsViewModel {
     // MARK: - Loading
 
     func loadStats() {
-        let path = Self.statsPath
-        guard FileManager.default.fileExists(atPath: path) else {
-            stats = nil
-            error = "No stats file found"
-            return
-        }
-
         do {
-            let data = try Data(contentsOf: URL(fileURLWithPath: path))
-            stats = try StatsCache.decode(from: data)
+            stats = try statsClient.loadStats()
             error = nil
         } catch {
             self.error = "Unable to read stats"
@@ -97,33 +77,9 @@ final class StatsViewModel {
     // MARK: - File Monitoring
 
     private func startMonitoring() {
-        let path = Self.statsPath
-        fileDescriptor = open(path, O_EVTONLY)
-        guard fileDescriptor != -1 else { return }
-
-        let source = DispatchSource.makeFileSystemObjectSource(
-            fileDescriptor: fileDescriptor,
-            eventMask: .write,
-            queue: .main
-        )
-
-        source.setEventHandler { [weak self] in
-            self?.loadStats()
+        statsClient.startMonitoring {
+            self.loadStats()
         }
-
-        source.setCancelHandler { [weak self] in
-            guard let self else { return }
-            close(self.fileDescriptor)
-            self.fileDescriptor = -1
-        }
-
-        source.resume()
-        fileMonitor = source
-    }
-
-    private func stopMonitoring() {
-        fileMonitor?.cancel()
-        fileMonitor = nil
     }
 
     // MARK: - Helpers

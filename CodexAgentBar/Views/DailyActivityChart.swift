@@ -1,5 +1,6 @@
 import SwiftUI
 import Charts
+import StatsClient
 
 enum ActivityMetric: String, CaseIterable {
     case messages = "Messages"

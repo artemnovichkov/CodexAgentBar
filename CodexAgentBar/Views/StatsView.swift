@@ -1,5 +1,6 @@
 import SwiftUI
 import Charts
+import StatsClient
 
 struct StatsView: View {
     @State private var viewModel: StatsViewModel
@@ -14,8 +15,6 @@ struct StatsView: View {
                 errorView(error)
             } else if let stats = viewModel.stats {
                 statsContent(stats)
-            } else {
-                ProgressView()
             }
         }
         .frame(width: 320)
@@ -203,14 +202,10 @@ struct StatsView: View {
     }
 }
 
-#Preview {
-    StatsView()
+#Preview("Happy path") {
+    StatsView(viewModel: StatsViewModel(statsClient: .happyPath))
 }
-#Preview("Empty State") {
-    StatsView(viewModel: {
-        let vm = StatsViewModel(loadOnInit: false)
-        vm.setError("No stats file found")
-        return vm
-    }())
+#Preview("Empty") {
+    StatsView(viewModel: StatsViewModel(statsClient: .empty))
 }
 

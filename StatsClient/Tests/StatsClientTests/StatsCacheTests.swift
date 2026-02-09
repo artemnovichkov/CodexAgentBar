@@ -55,7 +55,7 @@ struct StatsCacheTests {
         """
 
         let data = json.data(using: .utf8)!
-        let stats = try StatsCache.decode(from: data)
+        let stats = try JSONDecoder.statsDecoder.decode(StatsCache.self, from: data)
 
         #expect(stats.version == 1)
         #expect(stats.totalSessions == 49)
@@ -89,7 +89,7 @@ struct StatsCacheTests {
         """
 
         let data = json.data(using: .utf8)!
-        let stats = try StatsCache.decode(from: data)
+        let stats = try JSONDecoder.statsDecoder.decode(StatsCache.self, from: data)
 
         let calendar = Calendar.current
         let components = calendar.dateComponents(in: TimeZone(identifier: "UTC")!, from: stats.lastComputedDate)
@@ -122,7 +122,7 @@ struct StatsCacheTests {
         """
 
         let data = json.data(using: .utf8)!
-        let stats = try StatsCache.decode(from: data)
+        let stats = try JSONDecoder.statsDecoder.decode(StatsCache.self, from: data)
 
         let calendar = Calendar.current
         let components = calendar.dateComponents(in: TimeZone(identifier: "UTC")!, from: stats.firstSessionDate)
@@ -155,7 +155,7 @@ struct StatsCacheTests {
         """
 
         let data = json.data(using: .utf8)!
-        let stats = try StatsCache.decode(from: data)
+        let stats = try JSONDecoder.statsDecoder.decode(StatsCache.self, from: data)
 
         #expect(stats.dailyActivity.count == 2)
 
@@ -188,7 +188,7 @@ struct StatsCacheTests {
         """
 
         let data = json.data(using: .utf8)!
-        let stats = try StatsCache.decode(from: data)
+        let stats = try JSONDecoder.statsDecoder.decode(StatsCache.self, from: data)
 
         let usage = stats.modelUsage["claude-sonnet"]
         #expect(usage?.inputTokens == 100)
