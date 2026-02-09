@@ -18,8 +18,7 @@ let package = Package(
         .target(
             name: "StatsFeature",
             dependencies: [
-                "StatsClient",
-                .product(name: "StatsClientLive", package: "StatsClient"),
+                "StatsClient"
             ]
         ),
     ]

@@ -15,7 +15,7 @@ extension StatsClient {
                 let path = Self.statsPath
                 var fileDescriptor = open(path, O_EVTONLY)
                 if fileDescriptor == -1 {
-                    return
+                    return nil
                 }
 
                 let source = DispatchSource.makeFileSystemObjectSource(
@@ -32,6 +32,7 @@ extension StatsClient {
                 }
 
                 source.resume()
+                return source
             }
         )
     }

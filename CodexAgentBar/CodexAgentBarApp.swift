@@ -1,4 +1,6 @@
 import SwiftUI
+import StatsClientLive
+import StatsFeature
 
 @main
 struct CodexAgentBarApp: App {

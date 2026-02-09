@@ -1,4 +1,13 @@
-private extension StatsCache {
+//
+//  Mocks.swift
+//  StatsClient
+//
+//  Created by Artem Novichkov on 09.02.2026.
+//
+
+import Foundation
+
+extension StatsCache {
     static var mock: StatsCache {
         let calendar = Calendar.current
         let today = Date()

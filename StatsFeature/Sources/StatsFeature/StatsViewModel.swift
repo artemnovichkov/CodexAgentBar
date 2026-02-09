@@ -1,19 +1,17 @@
 import Foundation
 import Observation
 import StatsClient
-import StatsClientLive
 
+@MainActor
 @Observable
 public final class StatsViewModel {
     public private(set) var stats: StatsCache?
     public private(set) var error: String?
 
-    private var fileMonitor: DispatchSourceFileSystemObject?
-    private var fileDescriptor: Int32 = -1
-
     private var statsClient: StatsClient
+    private var monitoringSource: DispatchSourceFileSystemObject?
 
-    public init(statsClient: StatsClient = .live) {
+    public init(statsClient: StatsClient) {
         self.statsClient = statsClient
         loadStats()
         startMonitoring()
@@ -21,23 +19,23 @@ public final class StatsViewModel {
 
     // MARK: - Computed Properties
 
-    public var daysSinceFirstSession: Int? {
+    var daysSinceFirstSession: Int? {
         guard let firstDate = stats?.firstSessionDate else { return nil }
-        return Calendar.current.dateComponents([.day], from: firstDate, to: Date()).day
+        return Calendar.current.dateComponents([.day], from: firstDate, to: .now).day
     }
 
-    public var peakHourDate: Date? {
+    var peakHourDate: Date? {
         guard let hourCounts = stats?.hourCounts,
               let maxEntry = hourCounts.max(by: { $0.value < $1.value }),
               let hour = Int(maxEntry.key) else { return nil }
         return Calendar.current.date(from: DateComponents(hour: hour))
     }
 
-    public var sortedModelNames: [String] {
+    var sortedModelNames: [String] {
         stats?.modelUsage.keys.sorted() ?? []
     }
 
-    public var recentDailyActivity: [DailyActivity] {
+    var recentDailyActivity: [DailyActivity] {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
         guard let weekStart = calendar.dateInterval(of: .weekOfYear, for: today)?.start else { return [] }
@@ -56,7 +54,7 @@ public final class StatsViewModel {
         recentDailyActivity.contains { $0.messageCount > 0 || $0.sessionCount > 0 || $0.toolCallCount > 0 }
     }
 
-    public var sortedHourCounts: [(hour: Int, count: Int)] {
+    var sortedHourCounts: [(hour: Int, count: Int)] {
         guard let hourCounts = stats?.hourCounts else { return [] }
         return hourCounts
             .compactMap { key, value in
@@ -66,9 +64,7 @@ public final class StatsViewModel {
             .sorted { $0.hour < $1.hour }
     }
 
-    // MARK: - Loading
-
-    public func loadStats() {
+    func loadStats() {
         do {
             stats = try statsClient.loadStats()
         } catch {
@@ -76,21 +72,21 @@ public final class StatsViewModel {
         }
     }
 
-    // MARK: - File Monitoring
-
-    private func startMonitoring() {
-        statsClient.startMonitoring {
-            self.loadStats()
-        }
-    }
-
-    // MARK: - Helpers
-
-    public func shortModelName(_ name: String) -> String {
+    func shortModelName(_ name: String) -> String {
         let parts = name.split(separator: "-")
         guard parts.count >= 4, parts[0] == "claude" else { return name }
         let family = parts[1].capitalized
         let version = "\(parts[2]).\(parts[3])"
         return "\(family) \(version)"
+    }
+
+    // MARK: - Private
+
+    private func startMonitoring() {
+        monitoringSource = statsClient.startMonitoring { [weak self] in
+            Task { @MainActor in
+                self?.loadStats()
+            }
+        }
     }
 }

@@ -9,20 +9,13 @@
 /* Begin PBXBuildFile section */
 		061303F92F3A3A8500486BE8 /* StatsClient in Frameworks */ = {isa = PBXBuildFile; productRef = 061303F82F3A3A8500486BE8 /* StatsClient */; };
 		061303FC2F3A3BD300486BE8 /* StatsClientLive in Frameworks */ = {isa = PBXBuildFile; productRef = 061303FB2F3A3BD300486BE8 /* StatsClientLive */; };
+		061303FF2F3A42F500486BE8 /* StatsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 061303FE2F3A42F500486BE8 /* StatsFeature */; };
 		AA000001 /* CodexAgentBarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001 /* CodexAgentBarApp.swift */; };
-		AA000003 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100003 /* StatsViewModel.swift */; };
-		AA000004 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100004 /* StatsView.swift */; };
-		AA000005 /* DailyActivityChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100005 /* DailyActivityChart.swift */; };
-		AA000006 /* HourlyDistributionChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100006 /* HourlyDistributionChart.swift */; };
 		AA000007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA100007 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AA100001 /* CodexAgentBarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexAgentBarApp.swift; sourceTree = "<group>"; };
-		AA100003 /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
-		AA100004 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
-		AA100005 /* DailyActivityChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActivityChart.swift; sourceTree = "<group>"; };
-		AA100006 /* HourlyDistributionChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyDistributionChart.swift; sourceTree = "<group>"; };
 		AA100007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA100008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA100009 /* CodexAgentBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodexAgentBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,6 +28,7 @@
 			files = (
 				061303F92F3A3A8500486BE8 /* StatsClient in Frameworks */,
 				061303FC2F3A3BD300486BE8 /* StatsClientLive in Frameworks */,
+				061303FF2F3A42F500486BE8 /* StatsFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,30 +71,10 @@
 			children = (
 				061303F42F3A37A300486BE8 /* StatsClient */,
 				AA100001 /* CodexAgentBarApp.swift */,
-				AA300004 /* ViewModels */,
-				AA300005 /* Views */,
 				AA100007 /* Assets.xcassets */,
 				AA100008 /* Info.plist */,
 			);
 			path = CodexAgentBar;
-			sourceTree = "<group>";
-		};
-		AA300004 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				AA100003 /* StatsViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		AA300005 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				AA100004 /* StatsView.swift */,
-				AA100005 /* DailyActivityChart.swift */,
-				AA100006 /* HourlyDistributionChart.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		AA300006 /* Products */ = {
@@ -157,6 +131,7 @@
 			mainGroup = AA300001;
 			packageReferences = (
 				061303F72F3A3A8500486BE8 /* XCLocalSwiftPackageReference "StatsClient" */,
+				061303FD2F3A42F500486BE8 /* XCLocalSwiftPackageReference "StatsFeature" */,
 			);
 			productRefGroup = AA300006 /* Products */;
 			projectDirPath = "";
@@ -184,10 +159,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA000001 /* CodexAgentBarApp.swift in Sources */,
-				AA000003 /* StatsViewModel.swift in Sources */,
-				AA000004 /* StatsView.swift in Sources */,
-				AA000005 /* DailyActivityChart.swift in Sources */,
-				AA000006 /* HourlyDistributionChart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +363,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = StatsClient;
 		};
+		061303FD2F3A42F500486BE8 /* XCLocalSwiftPackageReference "StatsFeature" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = StatsFeature;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -403,6 +378,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 061303F72F3A3A8500486BE8 /* XCLocalSwiftPackageReference "StatsClient" */;
 			productName = StatsClientLive;
+		};
+		061303FE2F3A42F500486BE8 /* StatsFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = StatsFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
