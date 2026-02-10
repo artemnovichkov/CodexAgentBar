@@ -6,15 +6,6 @@ struct HourlyDistributionChart: View {
     let stats: StatsCache
     @State private var selectedHour: Int?
 
-    private var hourCounts: [(hour: Int, count: Int)] {
-        stats.hourCounts
-            .compactMap { key, value in
-                guard let hour = Int(key) else { return nil }
-                return (hour: hour, count: value)
-            }
-            .sorted { $0.hour < $1.hour }
-    }
-
     var body: some View {
         if hourCounts.isEmpty {
             Text("No data")
@@ -23,6 +14,15 @@ struct HourlyDistributionChart: View {
         } else {
             content
         }
+    }
+
+    private var hourCounts: [(hour: Int, count: Int)] {
+        stats.hourCounts
+            .compactMap { key, value in
+                guard let hour = Int(key) else { return nil }
+                return (hour: hour, count: value)
+            }
+            .sorted { $0.hour < $1.hour }
     }
 
     private var content: some View {

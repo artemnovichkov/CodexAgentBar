@@ -21,6 +21,18 @@ struct DailyActivityChart: View {
     @State private var selectedMetric: ActivityMetric = .messages
     @State private var selectedDate: Date?
 
+    var body: some View {
+        if hasActivity {
+            content
+        } else {
+            Text("No activity this week")
+                .font(.subheadline)
+                .foregroundStyle(.tertiary)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .frame(height: 70)
+        }
+    }
+
     private var activities: [DailyActivity] {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
@@ -42,18 +54,6 @@ struct DailyActivityChart: View {
 
     private var hasActivity: Bool {
         activities.contains { $0.messageCount > 0 || $0.sessionCount > 0 || $0.toolCallCount > 0 }
-    }
-
-    var body: some View {
-        if hasActivity {
-            content
-        } else {
-            Text("No activity this week")
-                .font(.subheadline)
-                .foregroundStyle(.tertiary)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .frame(height: 70)
-        }
     }
 
     private var content: some View {
