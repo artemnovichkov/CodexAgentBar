@@ -123,7 +123,12 @@ struct DailyActivityChart: View {
     }
 }
 
-#Preview {
+#Preview("With activity") {
     DailyActivityChart(stats: .mock)
+        .padding()
+}
+
+#Preview("No activity") {
+    DailyActivityChart(stats: .mockNoActivity)
         .padding()
 }

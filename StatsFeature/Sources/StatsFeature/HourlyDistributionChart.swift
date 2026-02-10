@@ -71,7 +71,12 @@ struct HourlyDistributionChart: View {
     }
 }
 
-#Preview {
+#Preview("With data") {
     HourlyDistributionChart(stats: .mock)
+        .padding()
+}
+
+#Preview("Empty") {
+    HourlyDistributionChart(stats: .mockEmptyHours)
         .padding()
 }

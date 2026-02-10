@@ -38,7 +38,7 @@ public struct StatsView: View {
             headerSection(stats)
             dailyChartSection(stats)
             SummaryView(stats: stats)
-            ModelUsageView(stats: stats)
+            modelUsageSection(stats)
             hourlyChartSection(stats)
             footerSection()
         }
@@ -62,7 +62,12 @@ public struct StatsView: View {
         }
     }
 
-    // MARK: - Daily Chart
+    private func modelUsageSection(_ stats: StatsCache) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            sectionHeader("Models")
+            ModelUsageView(stats: stats)
+        }
+    }
 
     private func dailyChartSection(_ stats: StatsCache) -> some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -70,8 +75,6 @@ public struct StatsView: View {
             DailyActivityChart(stats: stats)
         }
     }
-
-    // MARK: - Hourly Chart
 
     private func hourlyChartSection(_ stats: StatsCache) -> some View {
         VStack(alignment: .leading, spacing: 8) {

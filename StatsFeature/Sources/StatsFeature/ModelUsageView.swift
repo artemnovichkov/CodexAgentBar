@@ -4,27 +4,18 @@ import StatsClient
 struct ModelUsageView: View {
     let stats: StatsCache
 
-    private var sortedModelNames: [String] {
-        stats.modelUsage.keys.sorted()
-    }
-
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Models")
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(.secondary)
-            VStack(spacing: 4) {
-                ForEach(sortedModelNames, id: \.self) { name in
-                    if let usage = stats.modelUsage[name] {
-                        let totalTokens = usage.inputTokens + usage.outputTokens + usage.cacheReadInputTokens
-                        HStack {
-                            Text(shortModelName(name))
-                                .font(.subheadline)
-                            Spacer()
-                            Text(totalTokens, format: .number.notation(.compactName))
-                                .font(.subheadline.monospacedDigit())
-                                .foregroundStyle(.secondary)
-                        }
+        VStack(spacing: 4) {
+            ForEach(stats.modelUsage.keys.sorted(), id: \.self) { name in
+                if let usage = stats.modelUsage[name] {
+                    let totalTokens = usage.inputTokens + usage.cacheReadInputTokens + usage.cacheCreationInputTokens
+                    HStack {
+                        Text(shortModelName(name))
+                            .font(.subheadline)
+                        Spacer()
+                        Text(totalTokens, format: .number.notation(.compactName))
+                            .font(.subheadline.monospacedDigit())
+                            .foregroundStyle(.secondary)
                     }
                 }
             }
@@ -38,4 +29,14 @@ struct ModelUsageView: View {
         let version = "\(parts[2]).\(parts[3])"
         return "\(family) \(version)"
     }
+}
+
+#Preview("Single model") {
+    ModelUsageView(stats: .mock)
+        .padding()
+}
+
+#Preview("Multiple models") {
+    ModelUsageView(stats: .mockMultipleModels)
+        .padding()
 }
