@@ -1,6 +1,7 @@
 import Testing
 import Foundation
 import StatsClient
+import StatsClientLive
 
 @Suite("StatsCache Parsing Tests")
 struct StatsCacheTests {

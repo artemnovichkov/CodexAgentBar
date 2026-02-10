@@ -16,6 +16,6 @@ let package = Package(
     targets: [
         .target(name: "StatsClient"),
         .target(name: "StatsClientLive", dependencies: ["StatsClient"]),
-        .testTarget(name: "StatsClientTests", dependencies: ["StatsClient"]),
+        .testTarget(name: "StatsClientTests", dependencies: ["StatsClient", "StatsClientLive"]),
     ]
 )
