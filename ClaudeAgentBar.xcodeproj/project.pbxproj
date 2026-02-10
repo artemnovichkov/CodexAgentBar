@@ -10,15 +10,15 @@
 		061303F92F3A3A8500486BE8 /* StatsClient in Frameworks */ = {isa = PBXBuildFile; productRef = 061303F82F3A3A8500486BE8 /* StatsClient */; };
 		061303FC2F3A3BD300486BE8 /* StatsClientLive in Frameworks */ = {isa = PBXBuildFile; productRef = 061303FB2F3A3BD300486BE8 /* StatsClientLive */; };
 		061303FF2F3A42F500486BE8 /* StatsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 061303FE2F3A42F500486BE8 /* StatsFeature */; };
-		AA000001 /* CodexAgentBarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001 /* CodexAgentBarApp.swift */; };
+		AA000001 /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001 /* MainApp.swift */; };
 		AA000007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA100007 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AA100001 /* CodexAgentBarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexAgentBarApp.swift; sourceTree = "<group>"; };
+		AA100001 /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
 		AA100007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA100008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA100009 /* CodexAgentBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodexAgentBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA100009 /* ClaudeAgentBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClaudeAgentBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,27 +52,27 @@
 		AA300001 = {
 			isa = PBXGroup;
 			children = (
-				AA300002 /* CodexAgentBar */,
+				AA300002 /* ClaudeAgentBar */,
 				AA300006 /* Products */,
 				061303FA2F3A3BD300486BE8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		AA300002 /* CodexAgentBar */ = {
+		AA300002 /* ClaudeAgentBar */ = {
 			isa = PBXGroup;
 			children = (
 				061303F42F3A37A300486BE8 /* StatsClient */,
-				AA100001 /* CodexAgentBarApp.swift */,
+				AA100001 /* MainApp.swift */,
 				AA100007 /* Assets.xcassets */,
 				AA100008 /* Info.plist */,
 			);
-			path = CodexAgentBar;
+			path = ClaudeAgentBar;
 			sourceTree = "<group>";
 		};
 		AA300006 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA100009 /* CodexAgentBar.app */,
+				AA100009 /* ClaudeAgentBar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,9 +80,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA400001 /* CodexAgentBar */ = {
+		AA400001 /* ClaudeAgentBar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA600002 /* Build configuration list for PBXNativeTarget "CodexAgentBar" */;
+			buildConfigurationList = AA600002 /* Build configuration list for PBXNativeTarget "ClaudeAgentBar" */;
 			buildPhases = (
 				AA500001 /* Sources */,
 				AA200001 /* Frameworks */,
@@ -92,9 +92,9 @@
 			);
 			dependencies = (
 			);
-			name = CodexAgentBar;
-			productName = CodexAgentBar;
-			productReference = AA100009 /* CodexAgentBar.app */;
+			name = ClaudeAgentBar;
+			productName = ClaudeAgentBar;
+			productReference = AA100009 /* ClaudeAgentBar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -112,7 +112,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AA600001 /* Build configuration list for PBXProject "CodexAgentBar" */;
+			buildConfigurationList = AA600001 /* Build configuration list for PBXProject "ClaudeAgentBar" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -129,7 +129,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA400001 /* CodexAgentBar */,
+				AA400001 /* ClaudeAgentBar */,
 			);
 		};
 /* End PBXProject section */
@@ -150,7 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA000001 /* CodexAgentBarApp.swift in Sources */,
+				AA000001 /* MainApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +286,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CodexAgentBar/Info.plist;
+				INFOPLIST_FILE = ClaudeAgentBar/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -294,7 +294,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.artemnovichkov.CodexAgentBar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.artemnovichkov.ClaudeAgentBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -312,7 +312,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CodexAgentBar/Info.plist;
+				INFOPLIST_FILE = ClaudeAgentBar/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +320,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.artemnovichkov.CodexAgentBar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.artemnovichkov.ClaudeAgentBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -330,7 +330,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA600001 /* Build configuration list for PBXProject "CodexAgentBar" */ = {
+		AA600001 /* Build configuration list for PBXProject "ClaudeAgentBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA700001 /* Debug */,
@@ -339,7 +339,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA600002 /* Build configuration list for PBXNativeTarget "CodexAgentBar" */ = {
+		AA600002 /* Build configuration list for PBXNativeTarget "ClaudeAgentBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA700003 /* Debug */,

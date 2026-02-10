@@ -1,8 +1,10 @@
-# CodexAgentBar
+# ClaudeAgentBar
 
 A macOS menu bar app for tracking Claude Agent stats from Xcode.
 
-<img src=".github/app.png" alt="app" width="50%" />
+<p align="center">
+  <img src=".github/app.png" alt="app" width="50%" />
+</p>
 
 ## Features
 
