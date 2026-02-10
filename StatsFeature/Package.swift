@@ -19,6 +19,9 @@ let package = Package(
             name: "StatsFeature",
             dependencies: [
                 "StatsClient"
+            ],
+            resources: [
+                .process("Resources")
             ]
         ),
     ]

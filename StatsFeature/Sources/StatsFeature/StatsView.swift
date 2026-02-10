@@ -49,9 +49,9 @@ public struct StatsView: View {
 
     private func headerSection(_ stats: StatsCache) -> some View {
         HStack(alignment: .center) {
-            Image(systemName: "hammer.fill")
-                .font(.title2)
-                .foregroundStyle(.blue.gradient)
+            Image(.claude)
+                .resizable()
+                .frame(width: 40, height: 40)
             VStack(alignment: .leading, spacing: 1) {
                 Text("Claude Agent")
                     .font(.headline)
