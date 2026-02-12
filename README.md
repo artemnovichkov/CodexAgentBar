@@ -17,6 +17,16 @@ A macOS menu bar app for tracking Claude Agent stats from Xcode.
 
 ## Installation
 
+### Homebrew
+
+```bash
+brew install --cask artemnovichkov/tap/claudeagentbar
+```
+
+> The app is not notarized. On first launch you may need to right-click the app → Open, or run `xattr -dr com.apple.quarantine /Applications/ClaudeAgentBar.app`.
+
+### Manual
+
 1. Clone this repository.
 2. Open in Xcode.
 3. Build and run.

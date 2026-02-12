@@ -1,0 +1,43 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  build-and-release:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: |
+          xcodebuild archive \
+            -project ClaudeAgentBar.xcodeproj \
+            -scheme ClaudeAgentBar \
+            -configuration Release \
+            -archivePath build/ClaudeAgentBar.xcarchive \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            ARCHS=arm64
+      - name: Package
+        run: |
+          cd build/ClaudeAgentBar.xcarchive/Products/Applications
+          ditto -c -k --keepParent ClaudeAgentBar.app "$GITHUB_WORKSPACE/ClaudeAgentBar.zip"
+      - name: Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ github.ref_name }}" ClaudeAgentBar.zip \
+            --title "ClaudeAgentBar ${{ github.ref_name }}" \
+            --generate-notes
+      - name: Trigger tap update
+        env:
+          GH_TOKEN: ${{ secrets.TAP_TOKEN }}
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          SHA256=$(shasum -a 256 ClaudeAgentBar.zip | awk '{print $1}')
+          gh api repos/artemnovichkov/homebrew-tap/dispatches \
+            -f event_type=update-cask \
+            -f "client_payload[version]=$VERSION" \
+            -f "client_payload[sha256]=$SHA256"
